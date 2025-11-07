@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import {
   Instagram,
-  Music2,
-  Youtube,
+  Facebook,
   MapPin,
   Phone,
   Mail,
@@ -47,6 +46,7 @@ const Footer = () => {
       href: "https://instagram.com/aprovaminas",
       name: "Instagram",
     },
+    { icon: Facebook, href: "https://www.facebook.com/share/1DVB3rJaLY/", name: "Facebook" },
   ];
 
   // SEPARADO para melhor layout
