@@ -9,6 +9,12 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+// === 1. IMPORTS DA API ===
+import { 
+  submitSubscription, 
+  buildSubscriptionFromForm 
+} from "../lib/api"; // Certifique-se que o caminho está correto
+
 
 interface SubscriptionFormProps {
   onClose: () => void;
@@ -16,14 +22,18 @@ interface SubscriptionFormProps {
 
 type FormStatus = "form" | "loading" | "success";
 
-
 export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
   const [status, setStatus] = useState<FormStatus>("form");
   const [whatsapp, setWhatsapp] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [showAcceptError, setShowAcceptError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // --- Estilos da Marca ---
+  // === 2. NOVA VARIÁVEL DE ESTADO ===
+  // Esta variável vai controlar o 'disabled' do botão
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // --- Estilos da Marca (sem alteração) ---
   const brandColors = {
     text: "text-[#1b4965]",
     bg: "bg-[#1b4965]",
@@ -31,9 +41,7 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
     focusRing: "focus:ring-[#1b4965]/30",
     focusBorder: "focus:border-[#1b4965]",
   };
-
   const inputStyle = `w-full px-4 py-3 bg-slate-100 border-2 border-transparent rounded-lg placeholder:text-slate-400 focus:outline-none focus:bg-white ${brandColors.focusBorder} ${brandColors.focusRing} transition-all`;
-  // --- Fim Estilos ---
 
   const handleWhatsappChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, "").substring(0, 11);
@@ -47,26 +55,43 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
   };
 
   const onSuccessRedirect = () => {
-
     const whatsappUrl =
       "https://api.whatsapp.com/send?phone=5531973271770&text=Ol%C3%A1%21%20Acabei%20de%20enviar%20meus%20dados%20pelo%20site%20e%20tenho%20interesse%20em%20ser%20um%20Parceiro%20AprovaMinas.";
     window.open(whatsappUrl, "_blank");
     onClose();
   };
 
+  // === 3. 'handleSubmit' ATUALIZADO ===
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault(); 
+    
     if (!accepted) {
       setShowAcceptError(true);
       return;
     }
+    
     setShowAcceptError(false);
-    setStatus("loading");
-    await new Promise((resolve) => setTimeout(resolve, 1500)); // Simula envio
-    setStatus("success");
+    setError(null); 
+    setIsSubmitting(true); // Desabilita o botão
+    setStatus("loading");  // Muda a tela para o "Spinner"
+
+    try {
+      const formData = buildSubscriptionFromForm(event.currentTarget);
+      await submitSubscription(formData);
+      setStatus("success"); // Muda a tela para "Sucesso"
+
+    } catch (err) {
+      console.error("Falha ao enviar o lead:", err);
+      setError(err instanceof Error ? err.message : "Não foi possível enviar seus dados. Tente novamente.");
+      setStatus("form"); // Volta para a tela do formulário
+    
+    } finally {
+      // Independente de sucesso ou falha, reabilita o botão (caso volte ao form)
+      setIsSubmitting(false); 
+    }
   };
 
-  // Renderização condicional dos estados
+  // --- Telas de 'loading' e 'success' (sem alteração) ---
   if (status === "loading") {
     return (
       <div className="flex flex-col items-center justify-center h-80 text-center">
@@ -108,6 +133,7 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
     );
   }
 
+  // --- Tela do Formulário (status === 'form') ---
   return (
     <div className="text-center">
       <h2 className="text-3xl font-bold text-slate-800">
@@ -155,6 +181,12 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
             />
           </div>
 
+          <input 
+            type="hidden" 
+            name="interestArea" 
+            value="Ser Parceiro" 
+          />
+
           {/* Checkbox de Privacidade */}
           <div
             className={`rounded-lg border p-4 ${
@@ -189,7 +221,15 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
             )}
           </div>
         </div>
-     
+        
+        {/* Mensagem de Erro */}
+        {error && (
+          <div className="mt-4 text-center text-sm text-red-600">
+            <strong>Erro:</strong> {error}
+          </div>
+        )}
+
+        {/* Botões de Ação */}
         <div className="flex items-center gap-4 pt-8">
           <button
             type="button"
@@ -200,15 +240,24 @@ export default function SubscriptionForm({ onClose }: SubscriptionFormProps) {
           </button>
           <button
             type="submit"
-            disabled={!accepted}
+            // === 4. 'disabled' CORRIGIDO ===
+            // Agora usa 'isSubmitting'
+            disabled={!accepted || isSubmitting} 
             className={`w-full flex-1 px-6 py-3 flex items-center justify-center gap-2 rounded-lg font-bold shadow-lg transition-colors ${
               accepted
                 ? `${brandColors.bg} text-white ${brandColors.hoverBg}`
                 : "bg-slate-300 text-slate-500 cursor-not-allowed"
             }`}
           >
-            <Send size={18} />
-            <span>Enviar e Iniciar Conversa</span>
+            {/* Muda o texto do botão se estiver enviando */}
+            {isSubmitting ? (
+              <Loader2 className="h-5 w-5 animate-spin" />
+            ) : (
+              <Send size={18} />
+            )}
+            <span>
+              {isSubmitting ? "Enviando..." : "Enviar e Iniciar Conversa"}
+            </span>
           </button>
         </div>
       </form>
