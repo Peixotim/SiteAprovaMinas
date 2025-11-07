@@ -105,7 +105,7 @@ const Footer = () => {
             </Link>
             <p className="text-white/70 leading-relaxed max-w-md">
               Transformando vidas através da educação de qualidade há mais de{" "}
-              <span className="text-[#ffcc00] font-semibold">18 anos</span>.
+              <span className="text-[#ffcc00] font-semibold">20 anos</span>.
             </p>
           </motion.div>
 
