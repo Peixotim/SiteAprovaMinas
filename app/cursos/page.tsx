@@ -106,16 +106,6 @@ export default function CursosTecnicosPage() {
                 <main className="flex-grow bg-slate-50 py-20 border-t border-slate-200">
                     <div className="container mx-auto px-4">
 
-                        {/* Botão de Voltar (Não mexe com o modal, está correto) */}
-                        <div className="mb-8">
-                            <Link href="/" passHref>
-                                <Button variant="outline" className="text-slate-600 hover:text-[#1b4965]">
-                                    <ArrowLeft className="mr-2 h-4 w-4" />
-                                    Voltar ao Início
-                                </Button>
-                            </Link>
-                        </div>
-
                         <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1b4965] mb-16">
                             Portfólio de Certificações
                         </h2>
