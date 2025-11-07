@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import Header from "@/components/Header";
 import {
   ChevronDown,
@@ -14,20 +14,25 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 
+// === 1. NOVOS IMPORTS ===
+// Precisamos que esta página controle o Modal
+import Modal from "@/components/Modal/modal"; // Ajuste o caminho se necessário
+import SubscriptionForm from "@/components/Modal/SubscriptionForm"; // Ajuste o caminho se necessário
 
+// --- DADOS DA PÁGINA (COM MARCA CORRIGIDA) ---
 const privacySections = [
   {
     id: "secao1",
     title: "Quais dados coletamos?",
     icon: Database,
     summary:
-      "Coletamos apenas os dados que você nos fornece diretamente, como no formulário 'Fale Conosco' (nome, WhatsApp, área de interesse), e dados automáticos de navegação (cookies) para o site funcionar.",
+      "Coletamos apenas os dados que você nos fornece diretamente, como no formulário 'Quero ser um Parceiro' (nome, WhatsApp), e dados automáticos de navegação (cookies).",
     content: (
       <>
         <p>
           Coletamos informações que você nos fornece voluntariamente ao
-          interagir com nosso site, especificamente através de formulários como
-          o "Fale Conosco". Os dados coletados incluem:
+          interagir com nosso site, especificamente através de formulários
+          para se tornar um parceiro. Os dados coletados incluem:
         </p>
         <ul>
           <li>
@@ -36,11 +41,7 @@ const privacySections = [
           </li>
           <li>
             <strong>WhatsApp:</strong> Para entrarmos em contato e respondermos
-            sua solicitação.
-          </li>
-          <li>
-            <strong>Área de Interesse:</strong> Para entendermos como podemos
-            ajudá-lo a se tornar um parceiro.
+            sua solicitação de parceria.
           </li>
         </ul>
         <p>
@@ -56,12 +57,12 @@ const privacySections = [
     title: "Como usamos seus dados?",
     icon: FileText,
     summary:
-      "Usamos seus dados exclusivamente para responder ao seu contato, gerenciar nossa relação de parceria (caso você se torne um) e, com sua permissão, enviar novidades sobre nossos cursos.",
+      "Usamos seus dados exclusivamente para responder ao seu contato, gerenciar nossa relação de parceria (caso você se torne um) e, com sua permissão, enviar novidades.",
     content: (
       <>
         <p>
-          A "Acelera EAD" utiliza os dados coletados para as seguintes
-          finalidades:
+          A <strong>AprovaMinas</strong> utiliza os dados coletados para as
+          seguintes finalidades:
         </p>
         <ul>
           <li>
@@ -198,10 +199,10 @@ const privacySections = [
         <p>
           <strong>E-mail:</strong>{" "}
           <a
-            href="mailto:privacidade@aceleraead.com.br"
-            className="text-secondary hover:underline"
+            href="mailto:privacidade@aprovaminas.com.br" // E-mail corrigido
+            className="text-[#1b4965] hover:underline" // Cor corrigida
           >
-            privacidade@aceleraead.com.br
+            privacidade@aprovaminas.com.br
           </a>
         </p>
         <p>
@@ -237,12 +238,12 @@ const accordionVariants: Variants = {
   visible: {
     opacity: 1,
     height: "auto",
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }, // Ease mais suave
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
   exit: {
     opacity: 0,
     height: 0,
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }, // Ease mais suave
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
   },
 };
 
@@ -263,7 +264,7 @@ function PrivacySection({ section, isOpen, onToggle }: PrivacySectionProps) {
       whileHover={{
         y: -5,
         boxShadow:
-          "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)", // shadow-2xl
+          "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
@@ -273,11 +274,11 @@ function PrivacySection({ section, isOpen, onToggle }: PrivacySectionProps) {
         className="w-full p-6 lg:p-8 flex justify-between items-start text-left"
       >
         <div className="flex items-start">
-          <span className="bg-secondary/10 text-secondary p-4 rounded-xl mr-5">
+          <span className="bg-[#ffcc00]/20 text-[#1b4965] p-4 rounded-xl mr-5">
             <Icon className="h-7 w-7" />
           </span>
           <div>
-            <h2 className="text-xl lg:text-2xl font-bold text-primary">
+            <h2 className="text-xl lg:text-2xl font-bold text-[#1b4965]">
               {section.title}
             </h2>
             <p className="mt-2 text-base lg:text-lg text-slate-600 pr-4">
@@ -304,10 +305,10 @@ function PrivacySection({ section, isOpen, onToggle }: PrivacySectionProps) {
             exit="exit"
           >
             <div
-              className="prose prose-lg lg:prose-xl max-w-none text-slate-700 px-6 lg:px-8 pb-8 
-                          prose-a:text-secondary hover:prose-a:text-secondary-hover 
-                          prose-strong:text-primary-dark 
-                          prose-li:marker:text-secondary"
+              className="prose prose-lg max-w-none text-slate-700 px-6 lg:px-8 pb-8 
+                         prose-a:text-[#1b4965] hover:prose-a:text-blue-700 
+                         prose-strong:text-[#1b4965] 
+                         prose-li:marker:text-[#ffcc00]"
             >
               {section.content}
             </div>
@@ -318,11 +319,18 @@ function PrivacySection({ section, isOpen, onToggle }: PrivacySectionProps) {
   );
 }
 
+// -------------------------------------------------------------------
+// O CÓDIGO PROBLEMÁTICO FOI MOVIDO DAQUI
+// -------------------------------------------------------------------
+
+export default function PrivacyPolicyPage() {
+  
+  // === 2. ESTADO DO MODAL MOVIDO PARA CÁ ===
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  // ----------------------------------------
 
-export default function PrivacyPolicyPage() {
   const [openSectionId, setOpenSectionId] = useState<string | null>(
     privacySections[0].id
   );
@@ -332,56 +340,68 @@ export default function PrivacyPolicyPage() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-       <Header openModal={openModal} />
-      <div className="mb-14" />
+    // === 3. FRAGMENT ADICIONADO ===
+    <>
+      <div className="bg-slate-50 min-h-screen">
+        
+        {/* === 4. PROP 'openModal' PASSADA PARA O HEADER === */}
+        <Header openModal={openModal} />
+        
+        {/* mt-16 ajustado para mb-14 que você tinha */}
+        <div className="pt-16" /> 
 
-      {/* Hero Section */}
-      <motion.div
-        className="bg-gradient-to-br from-primary via-blue-800 to-primary-dark text-white"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
-          <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight">
-            Política de Privacidade
-          </h1>
-          <p className="mt-6 text-xl text-blue-200 max-w-2xl mx-auto">
-            Sua confiança é a nossa prioridade. Entenda como tratamos seus dados
-            de forma clara e transparente.
-          </p>
-          <p className="mt-4 text-base text-blue-300">
-            Última atualização:{" "}
-            {new Date().toLocaleDateString("pt-BR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
-        </div>
-      </motion.div>
+        {/* Hero Section (com cores da marca) */}
+        <motion.div
+          className="bg-gradient-to-br from-[#1b4965] to-[#0f253a] text-white"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
+            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight">
+              Política de Privacidade
+            </h1>
+            <p className="mt-6 text-xl text-white/80 max-w-2xl mx-auto">
+              Sua confiança é a nossa prioridade. Entenda como tratamos seus dados
+              de forma clara e transparente.
+            </p>
+            <p className="mt-4 text-base text-white/70">
+              Última atualização:{" "}
+              {new Date().toLocaleDateString("pt-BR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+          </div>
+        </motion.div>
 
-      {/* Conteúdo Principal (Acordeão) */}
-      <motion.main
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 max-w-4xl"
-        variants={pageVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <div className="space-y-8">
-          {privacySections.map((section) => (
-            <PrivacySection
-              key={section.id}
-              section={section}
-              isOpen={openSectionId === section.id}
-              onToggle={() => handleToggle(section.id)}
-            />
-          ))}
-        </div>
-      </motion.main>
+        {/* Conteúdo Principal (Acordeão) */}
+        <motion.main
+          className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 max-w-4xl"
+          variants={pageVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <div className="space-y-8">
+            {privacySections.map((section) => (
+              <PrivacySection
+                key={section.id}
+                section={section}
+                isOpen={openSectionId === section.id}
+                onToggle={() => handleToggle(section.id)}
+              />
+            ))}
+          </div>
+        </motion.main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+
+      {/* === 5. MODAL RENDERIZADO NO FINAL === */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <SubscriptionForm onClose={closeModal} />
+      </Modal>
+    </>
   );
 }
