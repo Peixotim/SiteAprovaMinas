@@ -14,8 +14,7 @@ import {
 } from "lucide-react";
 import Footer from "@/components/Footer";
 
-// --- DADOS DA POLÍTICA ---
-// Manter os dados separados da lógica de exibição facilita a manutenção.
+
 const privacySections = [
   {
     id: "secao1",
@@ -319,7 +318,10 @@ function PrivacySection({ section, isOpen, onToggle }: PrivacySectionProps) {
   );
 }
 
-// --- COMPONENTE PRINCIPAL DA PÁGINA ---
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
 export default function PrivacyPolicyPage() {
   const [openSectionId, setOpenSectionId] = useState<string | null>(
     privacySections[0].id
@@ -331,7 +333,7 @@ export default function PrivacyPolicyPage() {
 
   return (
     <div className="bg-slate-50 min-h-screen">
-      <Header />
+       <Header openModal={openModal} />
       <div className="mb-14" />
 
       {/* Hero Section */}

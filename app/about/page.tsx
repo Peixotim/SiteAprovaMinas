@@ -163,7 +163,7 @@ const AboutAprovaMinas = () => {
           </div>
         </section>
 
-        {/* === SEÇÃO DE CTA (CONTATO) === */}
+      
         <motion.section
           className="py-24 bg-slate-50 mt-16" // Fundo cinza-claro para diferenciar
           initial="hidden"
@@ -189,7 +189,7 @@ const AboutAprovaMinas = () => {
               <Link
                 href="https://wa.me/5531973296330?text=Ol%C3%A1%C2%8C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20cursos%20da%20AprovaMinas"
                 passHref
-                target="_blank" // Abrir em nova aba
+                target="_blank"
               >
                 <Button
                   size="lg" // Botão maior

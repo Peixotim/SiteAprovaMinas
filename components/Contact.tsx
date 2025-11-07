@@ -37,20 +37,20 @@ export function Contact() {
     {
       icon: Phone,
       title: "Telefone",
-      lines: ["(31) 97329-6330"],
-      href: "tel:+5531973296330",
+      lines: ["(31) 97327-1770"],
+      href: "tel:+5531973271770",
     },
     {
       icon: Mail,
       title: "E-mail",
-      lines: ["gerencial@colegioaceleraead.com.br"],
-      href: "mailto:gerencial@colegioaceleraead.com.br",
+      lines: ["comercial@colegioaprovaminas.com.br"],
+      href: "mailto:comercial@colegioaprovaminas.com.br",
     },
     {
       icon: Clock,
       title: "Horário de Atendimento",
       lines: ["Segunda a Sexta: 8h às 18h"],
-      href: "#", // Se não tiver link, pode manter
+      href: "#",
     },
   ];
 

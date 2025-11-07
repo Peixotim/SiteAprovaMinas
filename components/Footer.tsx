@@ -38,13 +38,13 @@ const Footer = () => {
   const quickLinks = [
     { text: "Sobre Nós", href: "/about" },
     { text: "Cursos", href: "/cursos" },
-    { text: "Parcerias", href: "#parcerias" }, // Se for uma âncora, considere o path completo ex: "/#parcerias"
+    { text: "Parcerias", href: "#parcerias" }, 
   ];
 
   const socialLinks = [
     {
       icon: Instagram,
-      href: "https://instagram.com/aceleraeadparceiros",
+      href: "https://instagram.com/aprovaminas",
       name: "Instagram",
     },
     { icon: Music2, href: "https://www.tiktok.com/", name: "TikTok" },
@@ -53,11 +53,11 @@ const Footer = () => {
 
   // SEPARADO para melhor layout
   const contactItems = [
-    { icon: Phone, lines: ["(31) 97329-6330"], href: "tel:+5531973296330" },
+    { icon: Phone, lines: ["(31) 97327-1770 "], href: "tel:+5531973271770 " },
     {
       icon: Mail,
-      lines: ["gerencial@colegioaceleraead.com.br"],
-      href: "mailto:gerencial@colegioaceleraead.com.br",
+      lines: ["comercial@colegioaprovaminas.com.br "],
+      href: "mailto:comercial@colegioaprovaminas.com.br",
     },
     { icon: Clock, lines: ["Seg-Sex: 8h às 18h", "Sáb: 8h às 12h"], href: "#" },
   ];
@@ -96,7 +96,7 @@ const Footer = () => {
           <motion.div variants={columnVariants} className="lg:col-span-1">
             <Link href="/" className="block mb-6 group">
               <Image
-                src="/aprovaMinas.png" // Garanta que este é o path para a 'Logo escolhida.png'
+                src="/aprovaMinas.png" 
                 alt="AprovaMinas Logo"
                 width={200} // Largura maior para a logo completa
                 height={77} // Proporção baseada na imagem (764x296)

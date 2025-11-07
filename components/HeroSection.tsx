@@ -1,12 +1,11 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion"; // Importei o tipo 'Variants'
+import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, LifeBuoy, TrendingUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
-// Adicionei o tipo 'Variants'
+
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -16,7 +15,6 @@ const fadeIn: Variants = {
   },
 };
 
-// Adicionei o tipo 'Variants'
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -25,7 +23,6 @@ const staggerContainer: Variants = {
   },
 };
 
-// Criei uma variante para a animação da imagem
 const slideInFromRight: Variants = {
   hidden: { opacity: 0, x: 100 },
   visible: {
@@ -35,7 +32,8 @@ const slideInFromRight: Variants = {
   },
 };
 
-export function HeroSection() {
+// --- PROPS ATUALIZADAS ---
+export function HeroSection({ openModal }: { openModal: () => void }) {
   const features = [
     {
       icon: Award,
@@ -53,14 +51,12 @@ export function HeroSection() {
 
   return (
     <section className="relative bg-gradient-to-br from-[#1b4965] to-[#0f253a] text-white pt-32 pb-16 md:pb-24 overflow-hidden">
-      
-      {/* ATUALIZADO: "Brilho" amarelo sutil no fundo para um visual premium */}
       <div
         className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_center,rgba(255,204,0,0.1),transparent_60%)] z-0"
         aria-hidden="true"
       />
 
-      <div className="container mx-auto px-4 relative z-10"> {/* Adicionado relative z-10 */}
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="grid lg:grid-cols-2 gap-12 items-center"
           initial="hidden"
@@ -70,7 +66,6 @@ export function HeroSection() {
         >
           {/* Coluna da Esquerda: O Pitch de Vendas */}
           <div className="z-10">
-            {/* ATUALIZADO: Classes de tipografia completas */}
             <motion.h1
               variants={fadeIn}
               className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6"
@@ -80,7 +75,6 @@ export function HeroSection() {
                 AprovaMinas
               </span>
             </motion.h1>
-            {/* ATUALIZADO: Classes de tipografia completas */}
             <motion.p
               variants={fadeIn}
               className="text-lg md:text-xl text-white/80 mb-8 max-w-lg"
@@ -88,11 +82,11 @@ export function HeroSection() {
               Junte-se a nós e tenha a força do{" "}
               <strong className="text-white">Grupo RJ Global</strong> e a
               plataforma da{" "}
-              <strong className="text-white">AceleraEAD</strong> para construir
+              {/* ATUALIZEI AQUI TAMBÉM */}
+              <strong className="text-white">AprovaMinas</strong> para construir
               seu negócio de sucesso.
             </motion.p>
 
-            {/* Features (da sua imagem 82159e.jpg) */}
             <motion.ul variants={fadeIn} className="space-y-4 mb-10">
               {features.map((feature) => (
                 <li key={feature.text} className="flex items-center gap-3">
@@ -102,36 +96,35 @@ export function HeroSection() {
               ))}
             </motion.ul>
 
-            {/* CTA Principal (Call-to-Action) */}
+            {/* --- BOTÃO ATUALIZADO --- */}
+            {/* Removemos o <Link> e adicionamos o onClick */}
             <motion.div variants={fadeIn}>
-              <Link href="/parceria" passHref>
-                <Button
-                  size="lg"
-                  className="bg-[#ffcc00] text-[#1b4965] hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 py-7 px-10 text-base font-semibold rounded-lg group"
-                >
-                  Quero ser um Parceiro
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                onClick={openModal} // Ação: Chama a prop 'openModal'
+                className="bg-[#ffcc00] text-[#1b4965] hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 py-7 px-10 text-base font-semibold rounded-lg group"
+              >
+                Quero ser um Parceiro
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </motion.div>
           </div>
 
           {/* Coluna da Direita: A Imagem */}
-<motion.div
+          <motion.div
             className="relative h-full"
             variants={slideInFromRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {/* ATUALIZADO: Imagem com src corrigido (sem espaços) */}
             <Image
-              src="/image.webp"
+              src="/image.webp" // Use a imagem que você baixou
               alt="Parceiro AprovaMinas de Sucesso"
               width={500}
               height={600}
               className="rounded-lg object-cover object-top h-[500px] md:h-[600px] shadow-2xl"
-              priority 
+              priority
             />
           </motion.div>
         </motion.div>

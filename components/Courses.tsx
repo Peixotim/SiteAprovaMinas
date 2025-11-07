@@ -8,7 +8,7 @@ import classroomModern from "@/public/assets/classroom-modern.jpg";
 import courses from "@/json/cursos.json";
 
 const Courses = () => {
-  // Objeto re-adicionado para garantir que o componente funcione sem erros
+
   const featuredCourse = {
     title: "MBA Executivo",
     description: "Acelere sua carreira com nosso MBA voltado para executivos...",

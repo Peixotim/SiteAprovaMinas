@@ -32,7 +32,7 @@ export default function Attraction() {
     const [showModal, setShowModal] = useState(false);
 
     return (
-        // Envolvemos com um Fragment <> para renderizar a section e o Modal
+
         <>
             <section className="py-20 px-4">
                 <div className="container mx-auto">
