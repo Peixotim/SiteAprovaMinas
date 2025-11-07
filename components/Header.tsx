@@ -41,7 +41,7 @@ const Header = () => {
       className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/30 shadow-lg transition-all"
     >
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        {/* LOGO */}
+    
         <Link href="/" className="flex items-center gap-3">
           <div className="relative w-10 h-10">
             <Image
@@ -96,7 +96,6 @@ const Header = () => {
           })}
         </nav>
 
-        {/* BOTÃO DESKTOP */}
         <div className="hidden md:block">
           <Button
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 text-sm font-semibold shadow-md hover:shadow-lg hover:scale-[1.03] transition-all"
@@ -105,7 +104,7 @@ const Header = () => {
           </Button>
         </div>
 
-        {/* MENU MOBILE */}
+
         <Button
           variant="ghost"
           size="icon"

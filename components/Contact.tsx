@@ -1,19 +1,21 @@
 "use client";
 
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { motion, Variants } from "framer-motion";
-import { ContactCard } from "./ContactCards";
+import { motion, type Variants } from "framer-motion"; // ATUALIZADO: Importei o tipo 'Variants'
+import { Card, CardContent } from "@/components/ui/card";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
+// Animação para os cards
+const cardVariants: Variants = { // ATUALIZADO: Adicionei o tipo 'Variants'
+  hidden: { opacity: 0, scale: 0.9 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    scale: 1,
+    transition: { type: "spring", stiffness: 120 },
   },
 };
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+const fadeIn: Variants = { // ATUALIZADO: Adicionei o tipo 'Variants'
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
@@ -21,93 +23,101 @@ const itemVariants: Variants = {
   },
 };
 
-const Contact = () => {
+export function Contact() {
   const contactInfo = [
     {
       icon: MapPin,
       title: "Endereço",
-      info: "Rua Luiz Rodrigues dos Santos, 44\nTodos os Santos - Coronel Fabriciano/MG",
-      href: "https://www.google.com/maps/search/?api=1&query=Luiz+Rodrigues+dos+Santos+44+Coronel+Fabriciano+MG",
+      lines: [
+        "Rua Luiz Rodrigues dos Santos, 44",
+        "Todos os Santos - Coronel Fabriciano/MG",
+      ],
+      href: "https://www.google.com/maps/place/R.+Luiz+Rodrigues+dos+Santos,+44+-+Todos+os+Santos,+Coronel+Fabriciano+-+MG,+35170-061", // Adicionei um link de exemplo
     },
     {
       icon: Phone,
       title: "Telefone",
-      info: "(31) 97329-6330",
-      href: "https://wa.me/5531973296330?text=Olá! Gostaria de saber mais sobre os cursos e parcerias da Acelera EAD.",
+      lines: ["(31) 97329-6330"],
+      href: "tel:+5531973296330",
     },
     {
       icon: Mail,
       title: "E-mail",
-      info: "gerencial@colegioaceleraead.com.br",
+      lines: ["gerencial@colegioaceleraead.com.br"],
       href: "mailto:gerencial@colegioaceleraead.com.br",
     },
     {
       icon: Clock,
       title: "Horário de Atendimento",
-      info: "Segunda a Sexta: 8h às 18h",
-      href: "#",
+      lines: ["Segunda a Sexta: 8h às 18h"],
+      href: "#", // Se não tiver link, pode manter
     },
   ];
 
   return (
-    <motion.section
-      id="contato"
-      className="relative py-24 bg-gradient-to-b from-background via-card/50 to-background/90 overflow-hidden"
-      itemScope
-      itemType="https://schema.org/ContactPage"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={containerVariants}
-    >
-      {/* Fundo com sutil brilho */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.05),transparent_70%)]" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* TÍTULO */}
-        <motion.header
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+    <section className="bg-white py-24">
+      <div className="container mx-auto px-4">
+        {/* Título da Seção */}
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold text-center text-[#1b4965] mb-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={fadeIn}
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-            Entre em{" "}
-            <span className="bg-gradient-to-r from-primary via-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Contato
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Estamos prontos para ajudar você a transformar seu futuro.
-            Entre em contato com a equipe da{" "}
-            <span className="text-primary font-medium">Aprova Minas</span> e tire
-            todas as suas dúvidas sobre parcerias e cursos.
-          </p>
-        </motion.header>
-
-        {/* CARDS DE CONTATO */}
-        <motion.ul
-          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 w-full"
-          role="list"
-          variants={containerVariants}
+          Entre em <span className="text-[#ffcc00]">Contato</span>
+        </motion.h2>
+        <motion.p
+          className="text-lg text-slate-600 text-center max-w-2xl mx-auto mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={fadeIn}
         >
-          {contactInfo.map(
-            (item, index) =>
-              item.info && (
-                <motion.li key={index} variants={itemVariants}>
-                  <ContactCard
-                    icon={item.icon}
-                    title={item.title}
-                    info={item.info}
-                    href={item.href}
-                  />
-                </motion.li>
-              )
-          )}
-        </motion.ul>
+          Estamos prontos para ajudar você a transformar seu futuro. Fale com
+          nossa equipe e tire todas as suas dúvidas sobre parcerias.
+        </motion.p>
+
+        {/* Grade de Cards de Contato */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ staggerChildren: 0.15 }}
+        >
+          {contactInfo.map((item) => (
+            <motion.div key={item.title} variants={cardVariants}>
+              {/* Adicionei 'group' para poder estilizar o 'a' no hover do card */}
+              <a
+                href={item.href}
+                target={item.href === "#" ? "_self" : "_blank"} // Não abre nova aba se o link for '#'
+                rel="noopener noreferrer"
+                className="group"
+              >
+                <Card
+                  // Efeito de hover consistente com o resto do site
+                  className="h-full bg-white border border-slate-200 shadow-lg shadow-slate-900/5 hover:shadow-xl hover:shadow-amber-400/20 hover:-translate-y-2 transition-all duration-300 rounded-xl overflow-hidden p-6"
+                >
+                  <CardContent className="p-0 flex flex-col items-center text-center md:items-start md:text-left">
+                    <div className="mb-4 bg-[#ffcc00]/20 p-3 rounded-full inline-block transition-transform duration-300 group-hover:scale-110">
+                      <item.icon className="h-8 w-8 text-[#1b4965]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-[#1b4965] transition-colors duration-300 group-hover:text-blue-800">
+                      {item.title}
+                    </h3>
+                    <div className="text-slate-600 leading-relaxed text-sm">
+                      {item.lines.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
-};
-
-export default Contact;
+}

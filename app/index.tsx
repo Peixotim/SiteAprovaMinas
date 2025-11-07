@@ -2,10 +2,13 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Contact from "@/components/Contact";
+import { Contact } from "@/components/Contact";
 import Footer from "@/components/Footer";
-import { Banner } from "@/components/banner/page";
+import { CTABanner } from "@/components/banner/CtaBanner";
 import Attraction from "@/components/Atraction";
+import { HeroSection } from "@/components/HeroSection";
+import { TrustStats } from "@/components/TrustStats";
+import { PartnerJourney } from "@/components/PartnerJourney";
 
 const Index = () => {
   return (
@@ -13,9 +16,11 @@ const Index = () => {
       <Header />
       <main>
         <div className="mt-16" />
-        <Hero />
+        <HeroSection/>
+        <TrustStats/>
+        <PartnerJourney/>
         <Attraction />
-        <Banner />
+      
 
         <Contact />
       </main>

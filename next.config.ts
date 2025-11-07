@@ -35,6 +35,16 @@ const nextConfig: NextConfig = {
             "react-router-dom": "./empty.js",
         },
     },
+    images:{
+        remotePatterns:[
+            {
+                protocol: 'http',
+                hostname: 'googleusercontent.com', 
+                port: '',
+                pathname:'/**'
+            }
+        ]
+    }
 }
 
 export default nextConfig
