@@ -47,8 +47,6 @@ const Footer = () => {
       href: "https://instagram.com/aprovaminas",
       name: "Instagram",
     },
-    { icon: Music2, href: "https://www.tiktok.com/", name: "TikTok" },
-    { icon: Youtube, href: "https://youtube.com/", name: "YouTube" },
   ];
 
   // SEPARADO para melhor layout
