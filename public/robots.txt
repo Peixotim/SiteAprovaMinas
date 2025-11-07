@@ -1,3 +1,5 @@
+# Robots.txt para https://www.colegioaprovaminas.com.br/
+
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +14,10 @@ Allow: /
 
 User-agent: *
 Allow: /
+# Evitar indexação de páginas administrativas ou privadas
+Disallow: /wp-admin/
+Disallow: /login/
+Disallow: /checkout/
+
+# Sitemap
+Sitemap: https://www.colegioaprovaminas.com.br/sitemap.xml

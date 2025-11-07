@@ -8,16 +8,16 @@ export default function SchemaOrg() {
     "@graph": [
       {
         "@type": "EducationalOrganization",
-        "@id": "https://colegioaceleraead.com.br#organization",
-        name: "Colégio Acelera EAD",
-        url: "https://colegioaceleraead.com.br",
-        logo: "https://colegioaceleraead.com.br/logo.png",
+        "@id": "https://www.colegioaprovaminas.com.br#organization",
+        name: "Colégio AprovaMinas",
+        url: "https://www.colegioaprovaminas.com.br",
+        logo: "https://www.colegioaprovaminas.com.br/logo.png",
         description:
-          "O Colégio Acelera EAD oferece cursos técnicos e profissionalizantes online com foco em empregabilidade e inovação no mercado.",
+          "O Colégio AprovaMinas oferece cursos técnicos e profissionalizantes online com foco em empregabilidade e inovação no mercado.",
         sameAs: [
-          "https://www.instagram.com/colegioaceleraead",
-          "https://www.facebook.com/colegioaceleraead",
-          "https://www.linkedin.com/school/colegioaceleraead",
+          "https://www.instagram.com/colegioaprovaminas",
+          "https://www.facebook.com/colegioaprovaminas",
+          "https://www.linkedin.com/school/colegioaprovaminas",
         ],
         address: {
           "@type": "PostalAddress",
@@ -37,31 +37,31 @@ export default function SchemaOrg() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://colegioaceleraead.com.br#website",
-        url: "https://colegioaceleraead.com.br",
-        name: "Colégio Acelera EAD",
-        publisher: { "@id": "https://colegioaceleraead.com.br#organization" },
+        "@id": "https://www.colegioaprovaminas.com.br#website",
+        url: "https://www.colegioaprovaminas.com.br",
+        name: "Colégio AprovaMinas",
+        publisher: { "@id": "https://www.colegioaprovaminas.com.br#organization" },
         potentialAction: {
           "@type": "SearchAction",
-          target: "https://colegioaceleraead.com.br/?s={search_term_string}",
+          target: "https://www.colegioaprovaminas.com.br/?s={search_term_string}",
           "query-input": "required name=search_term_string",
         },
       },
       {
         "@type": "WebPage",
-        "@id": "https://colegioaceleraead.com.br#webpage",
-        url: "https://colegioaceleraead.com.br",
-        name: "Colégio Acelera EAD - Cursos Técnicos e Profissionalizantes Online",
-        isPartOf: { "@id": "https://colegioaceleraead.com.br#website" },
-        about: { "@id": "https://colegioaceleraead.com.br#organization" },
+        "@id": "https://www.colegioaprovaminas.com.br#webpage",
+        url: "https://www.colegioaprovaminas.com.br",
+        name: "Colégio AprovaMinas - Cursos Técnicos e Profissionalizantes Online",
+        isPartOf: { "@id": "https://www.colegioaprovaminas.com.br#website" },
+        about: { "@id": "https://www.colegioaprovaminas.com.br#organization" },
         description:
           "Educação técnica de excelência online. Descubra nossos cursos com foco em empregabilidade e inovação.",
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://colegioaceleraead.com.br#localbusiness",
-        name: "Colégio Acelera EAD",
-        image: "https://colegioaceleraead.com.br/logo.png",
+        "@id": "https://www.colegioaprovaminas.com.br#localbusiness",
+        name: "Colégio AprovaMinas",
+        image: "https://www.colegioaprovaminas.com.br/logo.png",
         address: {
           "@type": "PostalAddress",
           streetAddress: "R. Luiz Rodrigues dos Santos, 44 - Todos Os Santos",
@@ -76,21 +76,21 @@ export default function SchemaOrg() {
           longitude: -42.6269,
         },
         telephone: "+55-31-97314-4070",
-        url: "https://colegioaceleraead.com.br",
+        url: "https://www.colegioaprovaminas.com.br",
       },
       {
         "@type": "Course",
         name: "Técnico em Agente Comunitário de Saúde - Por Competência",
         description:
           "Capacitar o profissional para ser o elo vital entre a comunidade e os serviços de saúde, fortalecendo o SUS.",
-        provider: { "@id": "https://colegioaceleraead.com.br#organization" },
+        provider: { "@id": "https://www.colegioaprovaminas.com.br#organization" },
       },
       {
         "@type": "Course",
         name: "Técnico em Logística",
         description:
           "Formação para atuar em gestão da cadeia de suprimentos, transporte, estoque e processos logísticos.",
-        provider: { "@id": "https://colegioaceleraead.com.br#organization" },
+        provider: { "@id": "https://www.colegioaprovaminas.com.br#organization" },
       },
     ],
   };
