@@ -3,8 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, LifeBuoy, TrendingUp } from "lucide-react";
-import Image from "next/image";
-
+import Image from "next/image"; // Importe Image do next/image
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -82,7 +81,6 @@ export function HeroSection({ openModal }: { openModal: () => void }) {
               Junte-se a nós e tenha a força do{" "}
               <strong className="text-white">Grupo RJ Global</strong> e a
               plataforma da{" "}
-              {/* ATUALIZEI AQUI TAMBÉM */}
               <strong className="text-white">AprovaMinas</strong> para construir
               seu negócio de sucesso.
             </motion.p>
@@ -96,8 +94,6 @@ export function HeroSection({ openModal }: { openModal: () => void }) {
               ))}
             </motion.ul>
 
-            {/* --- BOTÃO ATUALIZADO --- */}
-            {/* Removemos o <Link> e adicionamos o onClick */}
             <motion.div variants={fadeIn}>
               <Button
                 size="lg"
@@ -110,20 +106,20 @@ export function HeroSection({ openModal }: { openModal: () => void }) {
             </motion.div>
           </div>
 
-          {/* Coluna da Direita: A Imagem */}
+          {/* Coluna da Direita: A Imagem (com alterações) */}
           <motion.div
-            className="relative h-full"
+            className="relative h-64 md:h-96 lg:h-[500px] w-full mt-8 lg:mt-0 rounded-lg shadow-2xl overflow-hidden" // Contêiner da imagem com altura responsiva
             variants={slideInFromRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
             <Image
-              src="/image.webp" // Use a imagem que você baixou
-              alt="Parceiro AprovaMinas de Sucesso"
-              width={500}
-              height={600}
-              className="rounded-lg object-cover object-top h-[500px] md:h-[600px] shadow-2xl"
+              src="/foto.png" // Nova imagem
+              alt="Colaboração e Parceria AprovaMinas" // Novo alt text
+              fill // Preenche o contêiner pai
+              style={{ objectFit: 'cover', objectPosition: 'center' }} // Garante que a imagem cubra e centralize
+              className="rounded-lg" // Aplica o arredondamento de borda na imagem
               priority
             />
           </motion.div>
