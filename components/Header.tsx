@@ -9,10 +9,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-// --- IMPORTS REMOVIDOS ---
-// Modal e SubscriptionForm não são mais importados aqui
-
-// --- PROPS ATUALIZADAS ---
 const Header = ({ openModal }: { openModal: () => void }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -35,7 +31,7 @@ const Header = ({ openModal }: { openModal: () => void }) => {
     return () => window.removeEventListener("scroll", controlHeader);
   }, []);
 
-  // --- As funções open/close modal foram removidas ---
+
 
   return (
     <>
@@ -52,7 +48,7 @@ const Header = ({ openModal }: { openModal: () => void }) => {
           <Link href="/" className="flex items-center gap-3">
             <div className="relative w-10 h-10">
               <Image
-                src="/aprovaMinas.png" 
+                src="/logo.png" 
                 alt="Logo AprovaMinas"
                 fill
                 className="object-contain rounded-md"
