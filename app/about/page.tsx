@@ -68,7 +68,7 @@ const AboutAprovaMinas = () => {
       icon: LifeBuoy,
       title: "Suporte Completo ao Polo",
       description:
-        "Fornecemos treinamento, plataforma (AceleraEAD), marketing e suporte pedagógico total.",
+        "Fornecemos treinamento, apoio no marketing e suporte pedagógico total.",
     },
     {
       icon: Smartphone,
